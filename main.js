@@ -1,9 +1,9 @@
 const puppeteer = require('puppeteer');
 const fs=require('fs');
-var data = fs.readFileSync("data2.csv", "utf8");
+var data = fs.readFileSync("data3.csv", "utf8");
 data = data.split("\n");
 console.log(`Finished loading data. Number of entries: ${ data.length}`);
-var coords = fs.readFileSync("coords.csv", "utf8");
+var coords = fs.readFileSync("coords3.csv", "utf8");
 const headers = {"accept-language": "en-gb"};
 var index = 0; // the index of the last SUCCESSFUL data entry. 
 var successful_index = 0;
@@ -37,13 +37,13 @@ if (fs.existsSync("index.txt")) {
     }
   
     await browser.close();
-    fs.writeFileSync("coords.csv", coords);
-    console.log("Data saved to coords.csv");
+    fs.writeFileSync("coords3.csv", coords);
+    console.log("Data saved to coords3.csv");
   } catch(e) {
-    fs.writeFileSync(`coords.csv`, coords);
+    fs.writeFileSync(`coords3.csv`, coords);
     // for data recovery
     fs.writeFileSync("index.txt", successful_index);
-    console.log(`Data saved to coords.csv\nLast successful index ${successful_index}`);
+    console.log(`Data saved to coords3.csv\nLast successful index ${successful_index}`);
     await page.screenshot( {
       path: "error.png"
     } );
